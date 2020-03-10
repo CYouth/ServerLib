@@ -7,7 +7,8 @@
 4）使用 timing wheel 剔除空闲连接，有效管理服务端并发连接数  
 5）较先进的 C++编程思想，比如 RAII 防止内存泄露，PIMPL 分离接口和实现，function/bind 降低程序耦合度等  
 ****
-one loop per thread + thread pool：
+one loop per thread + thread pool：  
+![image](https://github.com/CYouth/ServerLib/blob/master/image/reactor.png)  
 ****
 代码版本：  
 v1.0：一个简单的echo服务器，分模块解耦处理服务端逻辑  
