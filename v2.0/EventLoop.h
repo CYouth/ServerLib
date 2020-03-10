@@ -48,7 +48,7 @@ public:
 	void cancelTimer(int timerfd);
 private:
 	Epoll* _epoll;
-	int _eventfd;
+	int _eventfd;//eventfd在EventLoop中
 	Channel* _channel;//管理_eventfd的channel
 	vector<Runner> _pendingFunctors;//异步队列
 	TimerQueue* _timerQueue;//定时事件的管理类
