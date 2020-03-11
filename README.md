@@ -9,6 +9,11 @@
 ****
 one loop per thread + thread pool：  
 ![image](https://github.com/CYouth/ServerLib/blob/master/image/reactor.png)  
+目前主流的服务器开发架构一般有两个线程池：1）IO线程池；2）业务线程池  
+1）IO线程池遵守“one loop per thread”的原则，一个IO线程有且仅有一个EventLoop（比如epollfd实现loop），可以处理IO事件、定时事件和信号事件（EventLoop搭载socketfd，timerfd和eventfd）。IO线程中也可以有处理业务的逻辑（eventfd可以唤醒IO线程处理异步业务逻辑），但是这些业务不能太耗时，否则还是建议使用业务线程池，因为业务线程池主要处理的是业务事件  
+2）多线程TcpServer：目前每个TcpServer有自己的EventLoopThreadPool，多个TcpServer之间不共享EventLoopThreadPool。在新建TcpConnection时从Event Loop Pool里挑选一个loop给TcpConnection用，也就是说多线程TcpServer自己的EventLoop只用来接收新连接，而新连接会用其他EventLoop来执行IO  
+  
+上述的架构在CPU核数有限的情况下，线程数目可能会多于CPU核数，此时线程不一定是真的在并行执行  
 ****
 代码版本：  
 v1.0：一个简单的echo服务器，分模块解耦处理服务端逻辑  
