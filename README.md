@@ -23,7 +23,7 @@ v2.0：重要的里程碑版本，加入User概念，现在开放网络库api给
 图中灰色的类是内部类，白色的是外部类  
 ![image](https://github.com/CYouth/ServerLib/blob/master/image/class.png)  
 * 首先是**EvenLoop**类，他是事件循环（反应器Reactor），每个线程只能有一个EventLoop实体，它负责IO和定时器事件的分派  
-* **Poller**是IOmultiplexing的实现，它是一个抽象类，具体实现由其子类PollPoller(封装poll)，EpollPoller(封装epoll)实现  
+* **Poller**是IOmultiplexing的实现，它是一个抽象类，具体实现由其子类**PollPoller**(封装poll)，**EpollPoller**(封装epoll)实现  
 * **Channel**对fd进行封装，其实更合适的说法是对fd事件相关方法的封装，例如负责注册fd的可读或可写事件到EvenLoop，又如fd产生事件后要如何响应。一个fd对应一个channel,它们是聚合关系  
 * **Socket**也是对fd的封装，但不同与channel,它仅封装::socket产生的fd,并且提供的方法也是一些获取或设置网络连接属性的方法，他和fd是组合关系  
 * **TcpConection**是对一个连接的抽象，一个TcpConnection包含一个Socket和一个Channel  
