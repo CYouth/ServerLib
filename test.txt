@@ -1,1 +1,5 @@
+<<<<<<< HEAD
 lsajdl:lsajdl:lsajdl:lsajdl:lsajdl:lsajdl:lsajdl:lsajdl:lsajdl:lsajdl:lsajdl:lsajdl:
+=======
+123
+>>>>>>> dev
